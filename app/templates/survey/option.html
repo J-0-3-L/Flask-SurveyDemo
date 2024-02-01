@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-option">
+    <div class="form-container">
+        <form action="/option/{{ form.question_id.data }}" method="POST" class="form">
+            {{ form.csrf_token }}
+            {{ form.question_id() }}
+            <div class="form-group">
+                {{ form.option_text.label }}
+                {{ form.option_text(class="form-group") }}
+            </div>
+            <button type="submit" class="form-submit-btn">Añadir</button>
+        </form>
+    </div>
+</div>
+
+<div class="container-question">
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        {% for option in options %}
+        <div class="unique-card">
+            <div class="background-overlay"></div>
+            <div class="card-content">
+                <div class="card-title">
+                    {{ option.option_text }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

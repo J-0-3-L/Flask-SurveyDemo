@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container-question">
+  <div class="form-container">
+    <form method="POST" action="/question/{{ form.survey_id.data }}" class="form">
+      {{ form.csrf_token }} {{ form.survey_id() }}
+      <div class="form-group">
+        {{ form.question_text.label }} {{ form.question_text(class="form-group")
+        }}
+      </div>
+      <button class="form-submit-btn" type="submit">Crear pregunta</button>
+    </form>
+    <a href="/admin" class="btn btn-secondary btn-sm rounded-2">Guadar todo</a>
+  </div>
+</div>
+
+
+<div class="container-question-view">
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        {% for question in questions %}
+      <div class="col">
+        
+        <div class="card">
+          <div class="content">
+            <div class="back">
+              <div class="back-content">
+                <strong class="card-text">{{ question.question_text}}</strong>
+              </div>
+            </div>
+            <div class="front">
+              <div class="front-content">
+                <a
+                  href="{{ url_for('option.createOption', question_id=question.id) }}"
+                  class="btn btn-info btn-sm rounded-2"
+                  >Añadir opciones</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

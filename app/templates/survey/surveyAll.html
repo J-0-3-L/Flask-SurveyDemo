@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-survey">
+    <div class="col-md-8 mx-auto">
+        <div class="mb-1 text-white">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-warning table-hover mb-0 text-center ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for survey in surveys %}
+                            <tr>
+                                <td>{{ survey.title }}</td>
+                                <td>{{ survey.user.username }}</td>
+                                <td>
+                                    <a href="{{ url_for('survey.viewSurvey', survey_id=survey.id) }}" class="btn btn-primary">Ver</a> 
+                                    <a href="{{ url_for('survey.updateSurvey', id=survey.id) }}" class="btn btn-success">Editar</a> 
+                                    <a href="{{ url_for('survey.deleteSurvey', id=survey.id) }}" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-create">
+        <a href="/createSurvey"><i class="bi bi-plus-circle-fill"></i></i></a>
+    </div>
+</div>
+{% endblock %}

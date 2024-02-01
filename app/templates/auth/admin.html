@@ -1,0 +1,4 @@
+
+{% if current_user.is_authenticated %}
+  <h5>Hi {{ current_user.username }}!</h5>
+{% endif %}

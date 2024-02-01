@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-view-survey">
+    <form method="POST" action="/updateSurvey" class="form">
+        <h1 class="survey-title">{{ survey.title }}</h1>
+        <p class="survey-description">{{ survey.description }}</p>
+
+        <div>
+            {% for question in questions %}
+            <div class="question">
+                <h5>{{ question.question_text }}</h5>
+                <ul>
+                    {% for option in options[question.id] %}
+                    <li class="option">
+                        {{ option.option_text }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+    
+</div>
+{% endblock %}
